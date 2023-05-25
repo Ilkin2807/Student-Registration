@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #92c84c;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .container {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #userProfile h2,
+    #schedule h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    #userProfile p {
+      margin-bottom: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Student Dashboard</h1>
+  <div id="userProfile" class="container">
+    <h2>User Profile</h2>
+    <p><strong>Name:</strong> John Doe</p>
+    <p><strong>Email:</strong> john@example.com</p>
+    <p><strong>Phone:</strong> 123456789</p>
+    <p><strong>Speciality:</strong> Computer Science</p>
+    <p><strong>Faculty:</strong> Faculty of Engineering</p>
+  </div>
+  <div id="schedule" class="container">
+    <h2>Schedule of Lessons</h2>
+    <ul>
+      <li>Lesson 1</li>
+      <li>Lesson 2</li>
+      <li>Lesson 3</li>
+    </ul>
+  </div>
+
+  <script>
+    // Retrieve user data from localStorage
+    var userData = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    // Check if user is logged in
+    if (userData) {
+      // Populate user profile data
+      var userProfile = document.getElementById('userProfile');
+      userProfile.innerHTML = `
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> ${userData.firstName} ${userData.lastName}</p>
+        <p><strong>Email:</strong> ${userData.email}</p>
+        <p><strong>Phone:</strong> ${userData.phone}</p>
+        <p><strong>Speciality:</strong> ${userData.speciality}</p>
+        <p><strong>Faculty:</strong> ${userData.faculty}</p>
+      `;
+
+      // Populate user's schedule of lessons
+      var schedule = document.getElementById('schedule');
+      schedule.innerHTML = `
+        <h2>Schedule of Lessons</h2>
+        <ul>
+          <li>Lesson 1</li>
+          <li>Lesson 2</li>
+          <li>Lesson 3</li>
+        </ul>
+      `;
+    } else {
+      // User is not logged in, redirect to login page
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
